@@ -1,0 +1,40 @@
+name: audity_player
+description: Plays .audity files (narrated audio + word-synced transcript) on Windows and Android.
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Audio playback with seek + speed control, works on both Windows and Android.
+  just_audio: ^0.9.40
+
+  # Pure-Dart zip reading -- .audity files are just zips (audio.mp3 + timestamps.json),
+  # so this needs no native unzip dependency on either platform.
+  archive: ^3.6.1
+
+  # App-local temp/support directories to extract .audity contents into.
+  path_provider: ^2.1.4
+
+  # Lets the user manually add a folder to scan, beyond the default Downloads folder.
+  file_picker: ^8.1.2
+
+  # Android runtime permission requests (storage access for scanning).
+  permission_handler: ^11.3.1
+
+  # Persists the list of user-added scan folders between launches.
+  shared_preferences: ^2.3.2
+
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

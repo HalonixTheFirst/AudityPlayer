@@ -47,11 +47,24 @@ class TranscriptData {
   /// Index of the word that should be considered "active" at [positionMs],
   /// or -1 if we're before the first word / after the last / in a gap.
   int activeWordIndexAt(int positionMs) {
+    // -1 only when we're before the very first word. Once narration has
+    // started, a silent gap between words keeps the last-finished word
+    // "active" (rather than snapping back to no-highlight) so the fade
+    // doesn't flash to a flat, washed-out state during pauses.
+    int lastPassedIndex = -1;
+
     for (var i = 0; i < words.length; i++) {
-      if (positionMs >= words[i].startTimeMs && positionMs < words[i].endTimeMs) {
-        return i;
+      if (positionMs >= words[i].startTimeMs &&
+          positionMs < words[i].endTimeMs) {
+        return i; // currently inside this word
+      }
+      if (positionMs >= words[i].endTimeMs) {
+        lastPassedIndex = i; // this word has already finished
+      } else {
+        break; // words are in order; no need to scan further
       }
     }
-    return -1;
+
+    return lastPassedIndex;
   }
 }

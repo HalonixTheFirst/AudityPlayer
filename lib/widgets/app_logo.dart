@@ -17,8 +17,8 @@ class AudityLogo extends StatelessWidget {
           fontFamily: 'Georgia', // swap for a bundled serif (e.g. Fraunces) once you add one -- see PLAYER_README.md
         ),
         children: const [
-          TextSpan(text: 'Au', style: TextStyle(color: AudityColors.ink)),
-          TextSpan(text: 'dity', style: TextStyle(color: AudityColors.brass)),
+          TextSpan(text: 'Audi', style: TextStyle(color: AudityColors.ink)),
+          TextSpan(text: 'ty', style: TextStyle(color: AudityColors.brass)),
         ],
       ),
     );

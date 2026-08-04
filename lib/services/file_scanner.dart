@@ -116,7 +116,9 @@ class FileScanner {
 
       for (final entity in entries) {
         if (entity is! File) continue;
-        if (!entity.path.toLowerCase().endsWith('.audity')) continue;
+        final lowerPath = entity.path.toLowerCase();
+        final isAudityFile = lowerPath.endsWith('.audity') || lowerPath.endsWith('.audity.zip');
+        if (!isAudityFile) continue;
         if (!seenPaths.add(entity.path)) continue;
 
         results.add(await AudityFile.fromFile(entity));

@@ -16,8 +16,7 @@ class AudityFile {
 
   static Future<AudityFile> fromFile(File file) async {
     final stat = await file.stat();
-    final name = file.uri.pathSegments.last.replaceAll(RegExp(r'\.audity$'), '');
-    return AudityFile(
+    final name = file.uri.pathSegments.last.replaceAll(RegExp(r'\.audity(\.zip)?$'), '');    return AudityFile(
       path: file.path,
       displayName: name,
       modifiedAt: stat.modified,
